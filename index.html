@@ -446,9 +446,7 @@
       }
 
       // Inicialize EmailJS (adicione no início do seu script)
-      emailjs.init("GmaJom05WRatZbk", {
-        debug: true
-      });
+      emailjs.init("GmaJom05WRatZbk");
       
       // No evento de submit do formulário
       if (contactForm) {
@@ -466,14 +464,16 @@
             phone: document.getElementById('phone').value,
             subject: document.getElementById('subject').value,
             message: document.getElementById('message').value,
-            time: new Date().toLocaleString('pt-BR')
+            time: new Date().toLocaleString('pt-BR', {
+              day: '2-digit',
+              month: '2-digit',
+              year: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit'
+            })
           };
-
-          console.log("Enviando dados:", formData);
-          console.log("Service ID:", "service_o8ou4u9");
-          console.log("Template ID:", "template_ea4686a");
           
-          // Enviar email
+          // Enviar email usando EmailJS
           emailjs.send("service_o8ou4u9", "template_ea4686a", formData)
             .then(function(response) {
               console.log("SUCCESS", response);
@@ -484,10 +484,10 @@
               contactForm.reset();
             })
             .catch(function(error) {
-              console.error("FAILED", error.text);
+              console.error("FAILED", error);
               showNotification(
                 'Erro no envio',
-                'Ocorreu um erro ao tentar enviar sua mensagem: ' + error.text
+                'Ocorreu um erro ao tentar enviar sua mensagem. Por favor, tente novamente mais tarde.'
               );
             })
             .finally(function() {
