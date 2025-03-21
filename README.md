@@ -10,7 +10,7 @@ Um site de portfolio moderno e responsivo desenvolvido com HTML, CSS e JavaScrip
 - **Modo Escuro/Claro**: Alternância de tema com persistência de preferência
 - **Animações Suaves**: Transições e animações para uma experiência refinada
 - **Performance Otimizada**: Carregamento eficiente de recursos e imagens
-- **Formulário de Contato**: Sistema de formulário com validação e feedback usando Netlify Forms
+- **Formulário de Contato**: Estrutura base HTML/CSS pronta para implementação
 - **Acessibilidade**: Atributos ARIA e navegação por teclado
 
 ## Tecnologias Utilizadas
@@ -18,7 +18,6 @@ Um site de portfolio moderno e responsivo desenvolvido com HTML, CSS e JavaScrip
 - HTML5 semântico
 - CSS3 (Flexbox, Grid, Variáveis CSS)
 - JavaScript 
-- Netlify Forms para processamento de formulários
 - WOW.js para animações de scroll
 - Animate.css para efeitos de entrada
 - Font Awesome para ícones
@@ -26,15 +25,14 @@ Um site de portfolio moderno e responsivo desenvolvido com HTML, CSS e JavaScrip
 
 ## Sistema de Contato
 
-O formulário de contato utiliza o [Netlify Forms](https://www.netlify.com/products/forms/), uma solução robusta e gratuita para processamento de formulários que funciona perfeitamente com sites estáticos. Principais características:
+O formulário de contato inclui uma estrutura HTML/CSS pronta, mas a implementação do backend/processamento fica a critério do usuário. Algumas opções populares incluem:
 
-### Vantagens do Netlify Forms
-- Processamento automático de formulários sem necessidade de backend
-- Proteção contra spam integrada
-- Notificações por email
-- Interface administrativa para visualizar submissões
-- Integração perfeita com sites hospedados no Netlify
-- Gratuito para até 100 submissões por mês
+- Serviços de formulário: Formspree, Netlify Forms, GetForm
+- Backend próprio: Node.js + Express, PHP, Python + Flask
+- Serviços serverless: AWS Lambda, Firebase Functions
+- APIs de email: SendGrid, Mailgun, Amazon SES
+
+Escolha a solução que melhor atenda às suas necessidades de processamento de formulário.
 
 ## Estrutura do Projeto
 
@@ -48,7 +46,7 @@ portfolio/
 └── README.md           # Documentação
 ```
 
-## Instalação e Deploy
+## Instalação
 
 1. Clone o repositório:
 ```bash
@@ -60,13 +58,9 @@ git clone https://github.com/jeanzimdev/portfolio.git
 cd portfolio
 ```
 
-3. Para desenvolvimento local:
-   - Abra o arquivo `index.html` em seu navegador ou utilize um servidor local
-   - Note que o Netlify Forms só funcionará após o deploy
+3. Abra o arquivo `index.html` em seu navegador ou utilize um servidor local.
 
-4. Para deploy:
-   - Faça o deploy do site no Netlify através do GitHub
-   - O Netlify Forms será automaticamente ativado
+4. Implemente o sistema de contato de sua preferência.
 
 ## Desenvolvedor
 
