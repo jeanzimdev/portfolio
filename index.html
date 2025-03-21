@@ -446,7 +446,9 @@
       }
 
       // Inicialize EmailJS (adicione no início do seu script)
-      emailjs.init("GmaJom05WRatZbk");
+      emailjs.init("GmaJom05WRatZbk", {
+        debug: true
+      });
       
       // No evento de submit do formulário
       if (contactForm) {
@@ -466,6 +468,8 @@
             message: document.getElementById('message').value,
             time: new Date().toLocaleString('pt-BR')
           };
+
+          console.log("Enviando dados:", formData);
           
           // Enviar email
           emailjs.send("service_o8ou4u9", "template_ea4686a", formData)
