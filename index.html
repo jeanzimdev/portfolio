@@ -20,14 +20,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <link rel="shortcut icon" href="img/favicon.png" />
   <title>Jean Felipe - Desenvolvedor Front-End</title>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-  <script type="text/javascript">
-    (function() {
-      emailjs.init("GmaJom05WRatZbk", {
-        cors: true // Habilita CORS para funcionar com GitHub Pages
-      });
-    })();
-  </script>
 </head>
 
 <body>
@@ -257,7 +249,8 @@
         </div>
         <div class="contact-grid">
           <div class="contact-form wow animate__animated animate__slideInLeft">
-            <form id="contactForm">
+            <form id="contactForm" name="contact" method="POST" data-netlify="true">
+              <input type="hidden" name="form-name" value="contact" />
               <div class="form-group">
                 <label for="name">Nome completo</label>
                 <input type="text" id="name" name="name" placeholder="Seu nome" required>
@@ -455,50 +448,9 @@
       // No evento de submit do formulário
       if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
-          e.preventDefault();
-          
           const submitButton = contactForm.querySelector('button[type="submit"]');
           submitButton.disabled = true;
           submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Enviando...</span>';
-          
-          // Preparar os dados do formulário
-          const templateParams = {
-            from_name: document.getElementById('name').value,
-            to_name: "Jean Felipe",
-            from_email: document.getElementById('email').value,
-            phone_number: document.getElementById('phone').value,
-            subject: document.getElementById('subject').value,
-            message: document.getElementById('message').value,
-            time: new Date().toLocaleString('pt-BR', {
-              day: '2-digit',
-              month: '2-digit',
-              year: 'numeric',
-              hour: '2-digit',
-              minute: '2-digit'
-            })
-          };
-
-          // Enviar email usando EmailJS
-          emailjs.send('service_o8ou4u9', 'template_ea4686a', templateParams)
-            .then(function(response) {
-              console.log("SUCCESS", response);
-              showNotification(
-                'Mensagem enviada',
-                'Obrigado pelo contato! Retornarei em breve.'
-              );
-              contactForm.reset();
-            })
-            .catch(function(error) {
-              console.error("FAILED", error);
-              showNotification(
-                'Erro no envio',
-                'Ocorreu um erro ao tentar enviar sua mensagem. Por favor, tente novamente mais tarde.'
-              );
-            })
-            .finally(function() {
-              submitButton.disabled = false;
-              submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> <span>Enviar mensagem</span>';
-            });
         });
       }
       

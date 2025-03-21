@@ -10,7 +10,7 @@ Um site de portfolio moderno e responsivo desenvolvido com HTML, CSS e JavaScrip
 - **Modo Escuro/Claro**: Alternância de tema com persistência de preferência
 - **Animações Suaves**: Transições e animações para uma experiência refinada
 - **Performance Otimizada**: Carregamento eficiente de recursos e imagens
-- **Formulário de Contato**: Sistema de formulário com validação e feedback usando EmailJS
+- **Formulário de Contato**: Sistema de formulário com validação e feedback usando Netlify Forms
 - **Acessibilidade**: Atributos ARIA e navegação por teclado
 
 ## Tecnologias Utilizadas
@@ -18,7 +18,7 @@ Um site de portfolio moderno e responsivo desenvolvido com HTML, CSS e JavaScrip
 - HTML5 semântico
 - CSS3 (Flexbox, Grid, Variáveis CSS)
 - JavaScript 
-- EmailJS para envio de emails sem backend
+- Netlify Forms para processamento de formulários
 - WOW.js para animações de scroll
 - Animate.css para efeitos de entrada
 - Font Awesome para ícones
@@ -26,18 +26,15 @@ Um site de portfolio moderno e responsivo desenvolvido com HTML, CSS e JavaScrip
 
 ## Sistema de Contato
 
-O formulário de contato utiliza o [EmailJS](https://www.emailjs.com/) para envio de emails diretamente do frontend, sem necessidade de backend próprio. Caso prefira usar um servidor PHP para processar os emails, siga estas opções:
+O formulário de contato utiliza o [Netlify Forms](https://www.netlify.com/products/forms/), uma solução robusta e gratuita para processamento de formulários que funciona perfeitamente com sites estáticos. Principais características:
 
-### Opção 1: EmailJS (implementação atual)
-- Serviço gratuito para até 200 emails por mês
-- Não requer servidor próprio
-- Fácil implementação e manutenção
-
-### Opção 2: Servidor PHP (alternativa)
-- Caso tenha hospedagem com suporte a PHP, você pode substituir a implementação do EmailJS
-- Crie um arquivo `send_email.php` na raiz do projeto
-- Modifique o JavaScript para enviar o formulário para este arquivo PHP
-- Ideal para quem busca maior controle sobre o processamento de emails
+### Vantagens do Netlify Forms
+- Processamento automático de formulários sem necessidade de backend
+- Proteção contra spam integrada
+- Notificações por email
+- Interface administrativa para visualizar submissões
+- Integração perfeita com sites hospedados no Netlify
+- Gratuito para até 100 submissões por mês
 
 ## Estrutura do Projeto
 
@@ -45,13 +42,13 @@ O formulário de contato utiliza o [EmailJS](https://www.emailjs.com/) para envi
 portfolio/
 │
 ├── img/                  # Imagens e ícones
-├── index.html            # Página principal
-├── styles.css            # Estilos globais
-├── screenshots/          # Screenshots do projeto
-└── README.md             # Documentação
+├── index.html           # Página principal
+├── styles.css           # Estilos globais
+├── screenshots/         # Screenshots do projeto
+└── README.md           # Documentação
 ```
 
-## Instalação
+## Instalação e Deploy
 
 1. Clone o repositório:
 ```bash
@@ -63,7 +60,13 @@ git clone https://github.com/jeanzimdev/portfolio.git
 cd portfolio
 ```
 
-3. Abra o arquivo `index.html` em seu navegador ou utilize um servidor local.
+3. Para desenvolvimento local:
+   - Abra o arquivo `index.html` em seu navegador ou utilize um servidor local
+   - Note que o Netlify Forms só funcionará após o deploy
+
+4. Para deploy:
+   - Faça o deploy do site no Netlify através do GitHub
+   - O Netlify Forms será automaticamente ativado
 
 ## Desenvolvedor
 
