@@ -249,7 +249,7 @@
         </div>
         <div class="contact-grid">
           <div class="contact-form wow animate__animated animate__slideInLeft">
-            <form id="contactForm" name="contact" method="POST" data-netlify="true">
+            <form id="contactForm" name="contact" method="POST" data-netlify="true" netlify>
               <input type="hidden" name="form-name" value="contact" />
               <div class="form-group">
                 <label for="name">Nome completo</label>
@@ -451,6 +451,14 @@
           const submitButton = contactForm.querySelector('button[type="submit"]');
           submitButton.disabled = true;
           submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Enviando...</span>';
+          
+          // Não previne o comportamento padrão para permitir que o Netlify processe o formulário
+          setTimeout(() => {
+            showNotification('Mensagem enviada', 'Obrigado pelo contato! Retornarei em breve.');
+            submitButton.disabled = false;
+            submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> <span>Enviar mensagem</span>';
+            contactForm.reset();
+          }, 2000);
         });
       }
       
