@@ -23,8 +23,7 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script type="text/javascript">
     (function() {
-      // https://dashboard.emailjs.com/admin/account
-      emailjs.init('GmaJom05WRatZbk', {
+      emailjs.init("GmaJom05WRatZbk", {
         cors: true // Habilita CORS para funcionar com GitHub Pages
       });
     })();
@@ -453,11 +452,6 @@
         });
       }
 
-      // Inicialize EmailJS (adicione no início do seu script)
-      emailjs.init("GmaJom05WRatZbk", {
-        debug: true
-      });
-      
       // No evento de submit do formulário
       if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
@@ -468,10 +462,11 @@
           submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Enviando...</span>';
           
           // Preparar os dados do formulário
-          const formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            phone: document.getElementById('phone').value,
+          const templateParams = {
+            from_name: document.getElementById('name').value,
+            to_name: "Jean Felipe",
+            from_email: document.getElementById('email').value,
+            phone_number: document.getElementById('phone').value,
             subject: document.getElementById('subject').value,
             message: document.getElementById('message').value,
             time: new Date().toLocaleString('pt-BR', {
@@ -484,7 +479,7 @@
           };
 
           // Enviar email usando EmailJS
-          emailjs.send('service_o8ou4u9', 'template_ea4686a', formData)
+          emailjs.send('service_o8ou4u9', 'template_ea4686a', templateParams)
             .then(function(response) {
               console.log("SUCCESS", response);
               showNotification(
