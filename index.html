@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <link rel="shortcut icon" href="img/favicon.png" />
   <title>Jean Felipe - Desenvolvedor Front-End</title>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
 
 <body>
@@ -444,78 +445,47 @@
         });
       }
 
-      // Form validation e envio
+      // Inicialize EmailJS (adicione no início do seu script)
+      emailjs.init("GmaJom05WRatZbk");
+      
+      // No evento de submit do formulário
       if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
           e.preventDefault();
           
-          // Obter dados do formulário
+          const submitButton = contactForm.querySelector('button[type="submit"]');
+          submitButton.disabled = true;
+          submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Enviando...</span>';
+          
+          // Obter dados do formulário e formatá-los de acordo com o template
           const formData = {
             name: document.getElementById('name').value,
             email: document.getElementById('email').value,
             phone: document.getElementById('phone').value,
             subject: document.getElementById('subject').value,
-            message: document.getElementById('message').value
+            message: document.getElementById('message').value,
+            time: new Date().toLocaleString('pt-BR')
           };
           
-          // Desabilitar botão de envio para evitar duplo envio
-          const submitButton = contactForm.querySelector('button[type="submit"]');
-          submitButton.disabled = true;
-          submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Enviando...</span>';
-          
-          // Simular envio (como não temos backend real)
-          setTimeout(() => {
-            showNotification(
-              'Mensagem enviada',
-              'Obrigado pelo contato! Retornarei em breve.'
-            );
-            
-            // Limpar formulário
-            contactForm.reset();
-            
-            // Restaurar botão
-            submitButton.disabled = false;
-            submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> <span>Enviar mensagem</span>';
-          }, 1500);
-          
-          /* Comentado para desenvolvimento:
-          // Enviar dados para o backend PHP
-          fetch('php/send.php', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-          })
-          .then(response => response.json())
-          .then(data => {
-            // Mostrar notificação
-            showNotification(
-              data.success ? 'Mensagem enviada' : 'Erro no envio',
-              data.message
-            );
-            
-            // Se sucesso, limpar formulário
-            if (data.success) {
+          // Enviar email
+          emailjs.send("service_o8ou4u9", "template_contact_us", formData)
+            .then(function(response) {
+              showNotification(
+                'Mensagem enviada',
+                'Obrigado pelo contato! Retornarei em breve.'
+              );
               contactForm.reset();
-            }
-            
-            // Restaurar botão
-            submitButton.disabled = false;
-            submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> <span>Enviar mensagem</span>';
-          })
-          .catch(error => {
-            console.error('Erro:', error);
-            showNotification(
-              'Erro no envio',
-              'Ocorreu um erro ao tentar enviar sua mensagem. Por favor, tente novamente mais tarde.'
-            );
-            
-            // Restaurar botão
-            submitButton.disabled = false;
-            submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> <span>Enviar mensagem</span>';
-          });
-          */
+            })
+            .catch(function(error) {
+              showNotification(
+                'Erro no envio',
+                'Ocorreu um erro ao tentar enviar sua mensagem. Por favor, tente novamente mais tarde.'
+              );
+            })
+            .finally(function() {
+              submitButton.disabled = false;
+              submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> <span>Enviar mensagem</span>';
+            });
         });
       }
       
